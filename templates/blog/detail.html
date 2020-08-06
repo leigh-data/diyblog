@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ post.title }}{% endblock  %}
+
+{% block content %}
+    <h1>{{ post.title }}</h1>
+    <p><b>Author:</b> <a href="">{{ post.author.username }}</a></p>
+    <p><b>Post date:</b> {{ post.created }}</p>
+    <p><b>Description:</b><br> {{ post.description }}</p>
+    <hr>
+    <h2>Comments</h2>
+    {% for comment in post.comments.all %}
+    {% empty %}
+        <div>
+            There are no comments.
+        </div>
+    {% endfor %}
+
+    {% if user.is_authenticated %}
+        <a href="">Add a new comment</a>
+    {% else %}
+        <a href="">Log in to add a new comment</a>
+    {% endif %}
+    
+{% endblock  %}
