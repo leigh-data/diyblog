@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Comment{% endblock  %}
+
+{% block content %}
+<p>Post your comment for <a href="{% url 'blog:detail' post.pk %}">{{ post.title }}</a></p>
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-success">Submit</button>
+</form>
+{% endblock  %}

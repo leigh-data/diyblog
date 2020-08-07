@@ -6,7 +6,7 @@
     <h1>All Bloggers</h1>
     <ul>
         {% for blogger in bloggers %}
-        <li><a href="#">{{ blogger.username }}</a></li>
+        <li><a href="{% url 'blog:blogger' blogger.pk %}">{{ blogger.username }}</a></li>
         {% endfor %}
     </ul>
 {% endblock %}

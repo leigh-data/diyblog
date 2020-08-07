@@ -10,6 +10,13 @@
     <hr>
     <h2>Comments</h2>
     {% for comment in post.comments.all %}
+        <div>
+            {{ comment.commenter }} ({{ comment.created }}) -- {{ comment.description }}
+            {% if comment.commenter == request.user %}
+            <a href="{% url 'blog:comment_update' comment.pk %}">Update</a>|
+            <a href="{% url 'blog:comment_delete' comment.pk %}">Delete</a>
+            {% endif %}
+        </div>
     {% empty %}
         <div>
             There are no comments.
@@ -17,7 +24,7 @@
     {% endfor %}
 
     {% if user.is_authenticated %}
-        <a href="">Add a new comment</a>
+        <a href="{% url 'blog:comment_create' post.pk %}">Add a new comment</a>
     {% else %}
         <a href="">Log in to add a new comment</a>
     {% endif %}

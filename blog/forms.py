@@ -1,8 +1,11 @@
 from django import forms
 
+from .models import Comment, Post
+
 
 class CommentForm(forms.ModelForm):
     class Meta:
+        model = Comment
         fields = ('description',)
 
     def clean_description(self):
@@ -11,3 +14,9 @@ class CommentForm(forms.ModelForm):
             raise forms.ValidationError(
                 "Comment cannot exceed 256 characters.")
         return data
+
+
+class BlogForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ('title', 'description',)

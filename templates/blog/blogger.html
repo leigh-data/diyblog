@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ blogger.username }}{% endblock  %}
+
+{% block content %}
+    <h1>Blogger: {{ blogger.username }}</h1>
+    <h2>Bio</h2>
+    <p>{{ blogger.profile.bio }}</p>
+    <h2>Blogs List</h2>
+        <ul>
+            {% for blog in blogger.blogs.all %}
+            <li>{{blog.title}}</li>
+            {% endfor %}
+        </ul>
+{% endblock %}

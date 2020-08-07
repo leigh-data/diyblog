@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.contrib.auth import get_user_model
 
 from django_extensions.db.models import TimeStampedModel
@@ -7,7 +8,7 @@ from django_extensions.db.models import TimeStampedModel
 class Post(TimeStampedModel):
     title = models.CharField(max_length=126)
     author = models.ForeignKey(
-        get_user_model(), on_delete=models.CASCADE, related_name="posts")
+        get_user_model(), on_delete=models.CASCADE, related_name="blogs")
     description = models.TextField()
 
     class Meta:
@@ -16,6 +17,9 @@ class Post(TimeStampedModel):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse("blog:detail", kwargs={"pk": self.pk})
 
 
 class Comment(TimeStampedModel):
@@ -30,3 +34,6 @@ class Comment(TimeStampedModel):
 
     def __str__(self):
         return f"{self.commenter}|{self.post}"
+
+    def get_absolute_url(self):
+        return reverse("blog:detail", kwargs={"pk": self.post.pk})
