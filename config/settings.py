@@ -116,12 +116,12 @@ STATIC_ROOT = STATIC_ROOT = str(BASE_DIR.joinpath('staticfiles'))
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-# EMAIL_HOST = ‘smtp.gmail.com’
-# EMAIL_USE_TLS = True
-# EMAIL_PORT = 587
-# EMAIL_HOST_USER = ‘your_account@gmail.com’
-# EMAIL_HOST_PASSWORD = ‘your account’s password
+EMAIL_BACKEND = env.str("EMAIL_BACKEND")
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "leighmforrest@gmail.com"
+EMAIL_HOST_PASSWORD = env.str("EMAIL_HOST_PASSWORD")
 
 # AUTH SETTINGS
 AUTH_USER_MODEL = 'users.CustomUser'
