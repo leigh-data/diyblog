@@ -2,14 +2,12 @@ from django.views.generic import (
     TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView)
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.contrib.auth.models import Permission
 from django.core.exceptions import PermissionDenied
 from django.urls import reverse_lazy
 
 from .models import Post, Comment
 from .forms import CommentForm, BlogForm
-
-PERM = Permission.objects.get(codename='blogger')
+from .helpers import PERM
 
 
 class HomePageView(ListView):
