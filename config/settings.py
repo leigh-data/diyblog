@@ -7,7 +7,6 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 env = environ.Env(DEBUG=(bool, False))
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
-DEBUG = True
 SECRET_KEY = env('SECRET_KEY')
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 SHELL_PLUS = "ipython"
